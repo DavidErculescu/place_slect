@@ -13,7 +13,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/journal/bootstrap.min.css" rel="stylesheet" integrity="sha384-yFdRSqOUsIuNXAuTjcNpqulUmbDTPw39dNNtFnKPvCZAQ8iQApD6VWRs/I3MRmJf" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script>
             var tkid = "<?php echo $_GET['tkid']; ?>";
         </script>
@@ -63,6 +63,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                            <span id="users_list"></span>
                                             <?php
                                                 $users = get_users($_GET['tkid']);
                                                 foreach ($users as $user) {
@@ -122,6 +123,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                            <span id="venues_list"></span>
                                             <?php
                                                 $venues = get_venues($_GET['tkid']);
                                                 foreach ($venues as $venue) {
@@ -165,12 +167,12 @@
                                             $ok_flag = 1;
                                             echo "
                                                 <tr>
-                                                    <td>".$venue['venue_name']."</td>
+                                                    <td>".$venue['name']."</td>
                                             ";
                                             echo "<td>";
                                             foreach ($data['users'] as $user){
-                                                $foods = array_intersect(explode(",", $venue['venue_foods']), explode(",", $user['foods']));
-                                                $drinks = array_intersect(explode(",", $venue['venue_drinks']), explode(",", $user['drinks']));
+                                                $foods = array_intersect(explode(",", $venue['foods']), explode(",", $user['foods']));
+                                                $drinks = array_intersect(explode(",", $venue['drinks']), explode(",", $user['drinks']));
                                                 if (count($drinks) == 0){
                                                     echo " ".$user['name']."  dosen't have anything to drink here. \r\n";
                                                     $ok_flag = 0;
@@ -209,8 +211,8 @@
                 }
             }
             
-            function loadUser() {
-
+            function loadUsers() {
+                var x = document.getElementById("users_list");
             }
 
             function addVenue() {
@@ -222,7 +224,7 @@
                 }
             }
             
-            function loadVenue() {
+            function loadVenues() {
                 
             }
         </script>

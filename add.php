@@ -17,7 +17,7 @@ if ( ! empty($errors)) {
     $data['errors']  = $errors;
 } else {
     $data['success'] = true;
-    $data['message'] = 'Success!';
+    $data['message'] = 'User added!';
 
     $obj['name'] = $_POST['name'];
     $obj['foods'] = $_POST['foods'];
